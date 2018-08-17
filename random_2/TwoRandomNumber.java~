@@ -1,0 +1,93 @@
+/*
+ * Classe responsável por gerar dois valores aleatórios 
+ * Nome: Lucas Yudi Sugi
+ * Número USP: 9293251
+ */
+
+public class TwoRandomNumber{
+
+
+	public static void main(String[] args) throws Exception {
+		
+		int i;
+		int randomNumber1 = 0, randomNumber2 = 0, semente1 = 0, semente2 = 0;
+		int contador = 1, op = 0;
+		boolean numeroIgual = false, entradaCorreta = false;
+		
+		//Verificando se o usuário quer inicializar as sementes ou não	
+		System.out.println("Deseja inicializar as sementes ou quer que o própio sistema fassa isso ?");
+		System.out.println("Digite 0 para inicializar\nDigite qualquer outro valor para o sistema inicializar");
+		
+		//Lendo a opção
+		op = EntradaTeclado.leInt();
+		if(op == 0){
+			//Verificando se a entrada é correta
+			while(entradaCorreta == false){
+				try{
+					//Informando o usuário para digitar um valor na finalidade de gerar uma semente
+					System.out.print("Digite um inteiro para usá-lo na criação da primeira semente: ");
+				
+					//Armazenando a primeira semente digitada pelo usuário
+					semente1 = EntradaTeclado.leInt();
+			
+					//Se a entrada é correta então outras intruções serão executadas
+					entradaCorreta = true;
+				}
+				catch(Exception e){
+					//Informando o usuário que sua entrada é inválida
+					System.out.println("Entrada inválida, por favor digite novamente");
+				}
+
+			}
+			//Verificando se a entrada é correta
+			entradaCorreta = false;
+			while(entradaCorreta == false){
+				try{
+					//Informando o usuário para digitar um valor na finalidade de gerar uma semente
+					System.out.print("Digite um inteiro para usá-lo na criação da segunda semente: ");
+
+					//Armazenando a segunda semente digitada pelo usuário
+					semente2 = EntradaTeclado.leInt();
+				
+					//Se a entrada é correta então outras intruções serão executadas
+					entradaCorreta = true;
+				}
+				catch(Exception e){
+					//Informando o usuário que sua entrada é inválida
+					System.out.println("Entrada inválida, por favor digite novamente");
+				}
+			}
+			
+			//Criação do objeto Random e inicializando uma nova semente
+			Random rand1 = new Random(semente1);
+
+			//Criação do outro objeto e inicializando a nova semente
+			Random rand2 = new Random(semente2);
+		}
+		else{
+			//Criação do objeto Random e inicializando uma nova semente
+			Random rand1 = new Random();
+
+			//Criação do outro objeto e inicializando a nova semente
+			Random rand2 = new Random();
+		}
+		//Geração dos valores
+		while(numeroIgual == false){
+			//Gerando primeiro valor aleatório
+			randomNumber1 = rand1.getIntRand(500) + 1;
+			
+			//Gerando segundo valor aleatório
+			randomNumber2 = rand2.getIntRand(500) + 1;
+				
+			//Verificando se os valores gerados são iguais
+			if(randomNumber1 == randomNumber2){
+				System.out.println("As duas sementes conseguiram gerar um valor igual após " + contador + " iterações");
+				System.out.println("O valor gerado foi: " + randomNumber1);
+				numeroIgual = true;		
+			}
+			else{
+				contador++;
+			}
+		}
+	}
+}
